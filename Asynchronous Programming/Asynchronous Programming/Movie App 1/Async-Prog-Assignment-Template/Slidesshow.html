@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width:100%;
+            height:400px;
+            margin-top: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1></h1>
+    <button onclick="start()">Start</button>
+    <button onclick="pause()">Pause</button>
+
+    <div id="container">
+
+    </div>
+</body>
+</html>
+
+<script>
+
+    // Steps
+    // image[0]
+    // append it
+    // 3 second
+    // As on 
+
+// because jab pause ho to uske agle number se start ho na ke 0 se agr esko local scope me daal denge to 0 se strart hoga
+let i=0
+
+let id;
+
+    function start(){
+        let images=JSON.parse(localStorage.getItem("images"));
+
+        let container=document.getElementById("container")
+
+ //because pause karne ke leyai iD chayei and let id uppar define karenge globar me taaki access ho jayai.
+   
+   id=   setInterval(function(){
+
+            if(i=== images.length)        //when image finished it will start from 0
+            {
+                i=0
+            }
+
+            container.innerHTML=null;         //bcause image replace ho kar ayai
+
+             //image[0,1,2] acessing the img_url
+             let image=images[i]  
+
+             console.log("i :",i)
+         
+            // append the img
+            let img=document.createElement("img")
+
+            img.src=image;                          
+
+            container.append(img);
+
+         
+            i++;
+
+        },3000)
+    }
+
+//pause funcinality condition 
+
+function pause(){
+    clearInterval(id);
+
+}
+
+
+
+
+</script>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" href="navbar.css">
+        <link rel="stylesheet" href="signup.css">
+    </head>
+
+    <body>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="signup.html">Signup</a>
+            <a href="login.html">Login</a>
+        </nav>
+        <div id="login-form-div">
+
+            <form id="form">
+                <!--Write form input elements here-->
+
+                <h1>Login </h1>
+                <!-- <p>*Email Address</p> -->
+                <br>
+                <br>
+                <br>
+                
+                 <input type="email" id="email" required   placeholder="Enter Your Email  Address ">
+                 <!-- <p>*Password</p> -->
+                 <br>
+                 <br>
+                 <input type="password" id="pass"  required    placeholder="Enter Your Password ">
+                 
+                 <input type="submit"  id="submit" value="Login" >
+
+            </form>
+
+        </div>
+    </body>
+
+</html>
+<script>
+    var form = document.querySelector("form");
+
+       //for taking data from local strorage;
+       var details = JSON.parse(localStorage.getItem("details"));
+
+       form.addEventListener("submit", function (event) {
+           event.preventDefault()
+           var data = {
+               Email: form.email.value,
+               Password: form.pass.value,
+           }
+           console.log(data)
+           // condition check for data is present
+           if (details === null) {
+               alert("Please Create an Account");
+           }
+           else if (details.Email === data.Email && details.Password === data.Password) {
+               alert("Sign in Successful")
+               localStorage.setItem("signin", JSON.stringify(details))
+               window.location.href = "index.html"
+           }
+           else {
+               alert("User Does Not Exist")
+           }
+       })
+
+</script>
